@@ -1,11 +1,41 @@
-import { useState,useCallback,useEffect } from 'react'
+import { useState,useCallback,useEffect,useRef } from 'react'
 import './App.css'
 
+// Minimal CopyButton component (keeps changes small)
+function CopyButton({ password }) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    try {
+      await window.navigator.clipboard.writeText(password)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1500)
+    } catch (e) {
+      // ignore clipboard errors silently
+      console.error('copy failed', e)
+    }
+  }
+
+  return (
+    <button
+      id="copy-button"
+      onClick={handleCopy}
+      className="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-400 text-white px-4 py-2 rounded-lg font-semibold hover:bg-orange-500"
+      type="button"
+    >
+      {copied ? 'Copied' : 'Copy'}
+    </button>
+  )
+}
+
 function App() {
+
   const [length, setLength] = useState(8)
   const [numberAllowed, setNumberAllowed] = useState(false)
   const [specialCharacterAllowed, setSpecialCharacterAllowed] = useState(false)
   const [password, setPassword] = useState("")
+
+  const passwordref = useRef(null)
 
 
   const generate_password= useCallback(()=>{
@@ -60,7 +90,8 @@ if (specialCharacterAllowed && !/[!@#$%&*]/.test(password)) {
 
   const copy_password_to_clipboard = useCallback(()=>{
     window.navigator.clipboard.writeText(password)
-  },[password])
+    passwordref.current.select()
+  })
 
   // const change_the_button_text = ()=>{
   //   const copyButton = document.querySelector('#copy-button')
@@ -72,7 +103,7 @@ if (specialCharacterAllowed && !/[!@#$%&*]/.test(password)) {
       <div className="w-[520px] bg-slate-800 rounded-2xl p-8 shadow-2xl relative">
         <h1 className="text-center text-2xl font-semibold text-white mb-6">Password generator</h1>
 
-        /* input + copy (button is inside input wrapper) */
+        
           <div className="relative mb-6">
             <input
               type="text"
@@ -94,6 +125,7 @@ if (specialCharacterAllowed && !/[!@#$%&*]/.test(password)) {
             value={length}
             onChange={(e) => setLength(+e.target.value)}
             className="w-full h-1 accent-orange-400"
+            ref={passwordref}
           />
         </div>
 

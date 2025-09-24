@@ -2,28 +2,17 @@ import { useState,useCallback,useEffect,useRef } from 'react'
 import './App.css'
 
 // Minimal CopyButton component (keeps changes small)
-function CopyButton({ password }) {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = async () => {
-    try {
-      await window.navigator.clipboard.writeText(password)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1500)
-    } catch (e) {
-      // ignore clipboard errors silently
-      console.error('copy failed', e)
-    }
-  }
-
+function CopyButton({ password, onCopy, setButtonRef }) {
+  // Minimal presentational button — actual copy logic lives in parent via onCopy
   return (
     <button
       id="copy-button"
-      onClick={handleCopy}
+      ref={(el) => setButtonRef && setButtonRef(el)}
+      onClick={onCopy}
       className="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-400 text-white px-4 py-2 rounded-lg font-semibold hover:bg-orange-500"
       type="button"
     >
-      {copied ? 'Copied' : 'Copy'}
+      Copy
     </button>
   )
 }
@@ -88,10 +77,32 @@ if (specialCharacterAllowed && !/[!@#$%&*]/.test(password)) {
     generate_password()
   },[numberAllowed,specialCharacterAllowed,length,generate_password])
 
-  const copy_password_to_clipboard = useCallback(()=>{
-    window.navigator.clipboard.writeText(password)
-    passwordref.current.select()
-  })
+  const copy_password_to_clipboard = useCallback(async () => {
+    try {
+      await window.navigator.clipboard.writeText(password)
+
+      // if password input ref exists, select text and change color briefly
+      const inputEl = passwordref.current && passwordref.current.input
+      if (inputEl && typeof inputEl.select === 'function') {
+        inputEl.select()
+        const prevColor = inputEl.style.color || ''
+        inputEl.style.color = '#10b981' // teal/green
+        setTimeout(() => {
+          inputEl.style.color = prevColor
+        }, 1500)
+      }
+
+      // if button ref stored, change its text briefly
+      const btnEl = passwordref.current && passwordref.current.button
+      if (btnEl) {
+        const prev = btnEl.innerText
+        btnEl.innerText = 'Copied'
+        setTimeout(() => (btnEl.innerText = prev), 1500)
+      }
+    } catch (e) {
+      console.error('copy failed', e)
+    }
+  }, [password])
 
   // const change_the_button_text = ()=>{
   //   const copyButton = document.querySelector('#copy-button')
@@ -112,10 +123,18 @@ if (specialCharacterAllowed && !/[!@#$%&*]/.test(password)) {
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-5 py-3 pr-28 rounded-lg bg-white placeholder-orange-300 text-orange-500 font-semibold border-2 border-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-300"
+              ref={(el) => {
+                if (!passwordref.current) passwordref.current = {}
+                passwordref.current.input = el
+              }}
             />
 
             {/* Copy button with feedback */}
-            <CopyButton password={password} />
+            {/* pass parent copy handler and setButtonRef so we can store button on the same ref */}
+            <CopyButton password={password} onCopy={copy_password_to_clipboard} setButtonRef={(el) => {
+              if (!passwordref.current) passwordref.current = {}
+              passwordref.current.button = el
+            }} />
           </div>
         <div className="mb-4">
           <input
@@ -125,7 +144,6 @@ if (specialCharacterAllowed && !/[!@#$%&*]/.test(password)) {
             value={length}
             onChange={(e) => setLength(+e.target.value)}
             className="w-full h-1 accent-orange-400"
-            ref={passwordref}
           />
         </div>
 

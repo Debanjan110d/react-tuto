@@ -16,6 +16,7 @@ Below are the project folders available in this workspace. Click a folder link t
 - [react-vite3](./react-vite3/) — Vite + React with components (see `react-vite3/README.md`).
 - [react-vite4_colorChanger](./react-vite4_colorChanger/) — color changer demo (see `react-vite4_colorChanger/README.md`).
 - [react-vite5](./react-vite5/) — password generator demo (see `react-vite5/README.md`).
+- [currency_converter6](./currency_converter6/) — currency converter with live FX rates (see `currency_converter6/README.md`) — [Live Demo](https://react-tuto-psi.vercel.app/)
 
 ## Quick run (Vite projects)
 
@@ -27,7 +28,7 @@ npm install
 npm run dev
 ```
 
-Then open the URL printed by Vite (usually http://localhost:5173) in your browser.
+Then open the URL printed by Vite (usually <http://localhost:5173>) in your browser.
 
 For simple static demos (like `customReact`), you can open the `index.html` file in a browser or serve the folder with a static server.
 
@@ -37,8 +38,16 @@ For simple static demos (like `customReact`), you can open the `index.html` file
 - I can create or update per-project README files with tailored run instructions.
 
 If you want me to add one of those, tell me which option you prefer.
-# start of react project
+## Live deployed demos
 
-# react docs
+| Project | Live URL |
+| ------- | -------- |
+| currency_converter6 | <https://react-tuto-psi.vercel.app/> |
+
+> Want another project deployed? Let me know which folder and preferred platform (Vercel, Netlify, etc.).
+
+## Start of react project
+
+## React docs
 
 [./react_docs.md](./react_docs.md)

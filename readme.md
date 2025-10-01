@@ -17,6 +17,13 @@ Below are the project folders available in this workspace. Click a folder link t
 - [react-vite4_colorChanger](./react-vite4_colorChanger/) — color changer demo (see `react-vite4_colorChanger/README.md`).
 - [react-vite5](./react-vite5/) — password generator demo (see `react-vite5/README.md`).
 - [currency_converter6](./currency_converter6/) — currency converter with live FX rates (see `currency_converter6/README.md`) — [Live Demo](https://react-tuto-psi.vercel.app/)
+- [react_vite](./react_vite/) — Vite + React project (see `react_vite/README.md`).
+- [react-vite2](./react-vite2/) — Vite + React sample (see `react-vite2/README.md`).
+- [react-vite3](./react_vite3/) — Vite + React with components (see `react-vite3/README.md`).
+- [react-vite4_colorChanger](./react_vite4_colorChanger/) — color changer demo (see `react-vite4_colorChanger/README.md`).
+- [react-vite5](./react-vite5/) — password generator demo (see `react-vite5/README.md`).
+- [currency_converter6](./currency_converter6/) — currency converter with live FX rates (see `currency_converter6/README.md`) — [Live Demo](https://react-tuto-psi.vercel.app/)
+- [react_router7](./react_router7/) — React Router demo (see `react_router7/README.md`)
 
 ## Quick run (Vite projects)
 
@@ -38,6 +45,7 @@ For simple static demos (like `customReact`), you can open the `index.html` file
 - I can create or update per-project README files with tailored run instructions.
 
 If you want me to add one of those, tell me which option you prefer.
+ 
 ## Live deployed demos
 
 | Project | Live URL |

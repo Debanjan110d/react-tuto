@@ -25,6 +25,8 @@ Below are the project folders available in this workspace. Click a folder link t
 - [currency_converter6](./currency_converter6/) — currency converter with live FX rates (see `currency_converter6/README.md`) — [Live Demo](https://react-tuto-psi.vercel.app/)
 - [react_router7](./react_router7/) — React Router demo (see `react_router7/README.md`)
 
+- [react-contextApi8](./react-contextApi8/) — React Context API demo (see `react-contextApi8/README.md`)
+
 ## Quick run (Vite projects)
 
 Most `react-*` folders are Vite projects. To run any of them (example uses `react-vite5`), open a terminal and run:

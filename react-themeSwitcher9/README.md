@@ -1,29 +1,3 @@
-# react-contextApi8 — React Context API demo
-
-This small demo shows how to use the React Context API to share user information (like a logged-in user) across components.
-
-Project layout (relevant files)
-
-- `src/Context/userContext.js` — exports `UserContext` (and can export a `UserContextProvider`).
-- `src/Context/UserContextProvider.jsx` — example provider component that wraps the app and provides user state.
-- `src/main.jsx` — where the provider should be mounted to wrap the full React tree.
-
-How to run
-
-From the workspace root or the project folder run:
-
-```powershell
-cd react-contextApi8
-npm install
-npm run dev
-```
-
-Open the URL printed by Vite (usually http://localhost:5173).
-
-Notes & next steps
-
-- The root workspace README links to this project: see `../readme.md`.
-- If you want, I can add a working `UserContextProvider` export directly to `src/Context/userContext.js` and update `src/main.jsx` to wrap the app (I will not change any other files unless you ask).
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

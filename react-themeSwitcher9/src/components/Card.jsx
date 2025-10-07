@@ -1,7 +1,7 @@
 import React from 'react'
 import useTheme from '../contexts/theme'
 
-export default function Card() {
+export default function Card() { 
     const { themeMode } = useTheme()
 
     const isDark = themeMode === 'dark'

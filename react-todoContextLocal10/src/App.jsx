@@ -7,9 +7,19 @@ function App() {
   const [todos, setTodos] = useState("")
 
   const addTodo = (todo) => {
-    setTodos((prevTodos) => [{id: Date.now(), todo},...prevTodos ]);
+    setTodos((prevTodos) => [{id: Date.now(),...todo},...prevTodos ]);
   }  
   
+
+  const updateTodo = (id,todo) => {
+    setTodos((prevTodos) => prevTodos.map((t) => t.id === id ? todo : t));
+  }
+  const deleteTodo = (id) => {
+    setTodos((prevTodos) => prevTodos.filter((t) => t.id !== id));
+  }
+  const toggleTodo = (id) => {
+    setTodos((prevTodos) => prevTodos.map((t) => t.id === id ? {...t,completed: !t.completed} : t));
+  }
 
   return (
     <TodoProvider value={{todos,addTodo,deleteTodo,toggleTodo}}>

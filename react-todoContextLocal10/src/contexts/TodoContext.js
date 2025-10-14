@@ -16,7 +16,8 @@ export const TodoContext = createContext({
 })
 
 
-export default function useTodo() {
+
+export function useTodo() {
     return useContext(TodoContext)
 }
 

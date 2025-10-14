@@ -1,16 +1,52 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# React Todo App with Context & Local Storage
 
-Currently, two official plugins are available:
+This is a modern Todo application built with React, Vite, and Tailwind CSS. It uses React Context for state management and persists todos in local storage.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Add, edit, complete, and delete todos
+- Edit prevention for completed todos
+- All todos are saved in your browser (local storage)
+- Responsive and clean UI with Tailwind CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
+### 1. Install dependencies
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+```
+
+### 2. Start the development server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) to view the app in your browser.
+
+## Project Structure
+
+- `src/contexts/` – Context and provider for todos
+- `src/components/` – TodoForm, TodoItem, and index exports
+- `src/App.jsx` – Main app logic and provider
+- `src/App.css` – Custom styles for the app container
+
+## Usage
+
+1. Type a todo in the input and click **Add**
+2. Click the checkbox to mark as complete/incomplete
+3. Click the ✏️ (edit) icon to edit, then 💾 (save) to save changes
+4. Click × to delete a todo
+
+> **Note:** Completed todos cannot be edited.
+
+## Customization
+
+- You can further style the app by editing `App.css` or Tailwind classes in the components.
+- Logic comments are included in the code for learning and debugging.
+
+---
+
+Built with [React](https://react.dev/), [Vite](https://vitejs.dev/), and [Tailwind CSS](https://tailwindcss.com/).

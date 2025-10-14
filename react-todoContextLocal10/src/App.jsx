@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react'
 
 import './App.css'
 import { TodoProvider } from './contexts'
+import { Todoform } from './components'
+import { TodoItem } from './components'
+
 
 function App() {
-  const [todos, setTodos] = useState("")
+  const [todos, setTodos] = useState([])
 
   const addTodo = (todo) => {
     setTodos((prevTodos) => [{id: Date.now(),...todo},...prevTodos ]);
@@ -36,9 +39,19 @@ function App() {
   },[todos])
 
   return (
-    <TodoProvider value={{todos,addTodo,deleteTodo,toggleTodo}}>
-      <h1 className='text-4xl text-center text-amber-500 bg-yellow-100 text-bold hover:bg-amber-300 flex items-center justify-center'>Hello TODO</h1>
-    </TodoProvider>
+    <TodoProvider value={{todos,addTodo,removeTodo,updateTodo,toggleTodo}}>
+        <Todoform/>
+        <div className="mt-6 flex flex-col gap-3">
+          {/* Logic issue: The map function must return the component directly, not inside curly braces. */}
+          {todos.length === 0 ? (
+            <div className="text-center text-gray-400">No todos yet. Add one above!</div>
+          ) : (
+            todos.map((todo) => (
+              <TodoItem key={todo.id} todo={todo} />
+            ))
+          )}
+        </div>
+      </TodoProvider>
   )
 }
 
